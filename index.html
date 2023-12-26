@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title> Custom QR code Generator </title>
+    <style>
+      body{
+        font-family:Arial,sans-serif;
+        background-color:#f4f4f4;
+        margin:0;
+        padding:0;
+      }
+      header{
+        background-color:#007bff;
+        color:#fff;
+        padding:1rem;
+        text-align:center;
+        border-bottom:2px solid #0056b3;
+      }
+      h1{
+        margin:0;
+      }
+      form{
+        text-align:center;
+        margin:2rem auto;
+        max-width:300px;
+      }
+      input[type="text"]{
+        width:100%;
+        padding:0.5rem;
+        margin-bottom:1rem;
+      }
+      button{
+        background-color:#007bff;
+        color:#fff;
+        border:none;
+        padding:0.5rem 1rem;
+        cursor:pointer;
+      }
+      button:hover{
+        background-color:#0056b3;
+      }
+      #qrcode{
+        text-align:center;
+        margin:2rem auto;
+      }
+    </style>
+  </head>
+  <header>
+    <h1>Custom QR Code Generator</h1>
+  </header>
+  <form>
+    <label for="text">Enter Text or URL:</label><br>
+    <input type="text" id="text"/><br>
+    <button type="submit">Generate QR code</button>
+  </form>
+  <div id="qrcode"></div>
+  <script src="https://cdn.jsdeliver.net/npm/qrcode@1.4.4/dist/qrcode.min.js"></script>
+  <script>
+    const form=document.querySelector("form");
+    const input=document.querySelector("#text");
+    const qrcodeDiv=document.querySelector("#qrcode");
+
+    form.addEventListener("submit",(event)=>{
+      event.preventDefault();
+      const text=input.value;
+      if(text){
+        qrcodeDiv.innerHTML="";
+        const qrcode=new QRcode(qrcodeDiv,{
+          text:text;
+          width:200;
+          height:200;
+        });
+      }
+    });
+
+  </script>
+  </body>
+</html>
